@@ -1,0 +1,178 @@
+  <div class="techersButtons" >
+   <h3>VIEW TEACHERS </h3>
+    <div class="button-row">
+     <button mat-raised-button color="primary" (click)="openAdd()">ADD_TEACHERS</button> 
+     <br>
+     <br>
+     <br>
+     <br>
+     <button mat-raised-button color="primary"  (click)="openView()" >  VIEW_TEACHERS</button><br>
+     <br>
+     <br>
+     <br>
+     <br>
+     <button mat-raised-button color="primary">DELETE_TEACHERS</button><br>
+     <br>
+     <br>
+     <br>
+     <br>
+    </div>
+   </div> 
+  
+   <div *ngIf="viewFlag" class="login_div">
+      <input [(ngModel)]="searchText" placeholder="search text goes here">
+    
+        <div *ngFor="let c of teachersList | teachersPipe : searchText">
+        </div>
+    
+   <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+<!-- Position Column -->
+  <ng-container matColumnDef="tId">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> TID </th>
+    <td mat-cell *matCellDef="let element"> {{element.tId}} </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="fName">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> FirstName </th>
+    <td mat-cell *matCellDef="let element"> {{element.fName}} </td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="lName">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> LastName </th>
+    <td mat-cell *matCellDef="let element"> {{element.lName}} </td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="subject">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Subject </th>
+    <td mat-cell *matCellDef="let element"> {{element.subject}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="adress">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Adress </th>
+        <td mat-cell *matCellDef="let element"> {{element.adress}} </td>
+      </ng-container>
+    
+      <!-- Name Column -->
+      <ng-container matColumnDef="mobile">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Mobile </th>
+        <td mat-cell *matCellDef="let element"> {{element.mobile}} </td>
+      </ng-container>
+    
+      <!-- Weight Column -->
+      <ng-container matColumnDef="tEmailId">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> EmailID </th>
+        <td mat-cell *matCellDef="let element"> {{element.tEmailId}} </td>
+      </ng-container>
+    
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="dob">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> DOB </th>
+        <td mat-cell *matCellDef="let element"> {{element.dob}} </td>
+      </ng-container> 
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="doj">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> DOJ </th>
+                <td mat-cell *matCellDef="let element"> {{element.doj}} </td>
+              </ng-container>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+       </div>
+  <div *ngIf="addFlag" class="login_div">
+      <H1 class="tiColor"> WELL COME LOGIN PAGE </H1>
+      <form fxFlex fxLayout="column" fxLayoutAlign="center center" [formGroup]="loginForm" (ngSubmit)="onLogin()" fxLayoutGap="20px" >
+        <table>
+          <tr>
+            <td>  
+        <mat-form-field> 
+            <mat-label>Enter FirstName</mat-label>
+            <input matInput placeholder="FirstName" required formControlName="fName">
+            <mat-error *ngIf="fName.invalid">
+                FirstName is required
+            </mat-error>
+           </mat-form-field>
+           </td></tr>
+            <tr>
+                <td> 
+             <mat-form-field> 
+                <mat-label>Enter LastName</mat-label>
+                <input matInput placeholder="FirstName" required formControlName="lName">
+                <mat-error *ngIf="lName.invalid">
+                    LastName is required
+                </mat-error>
+               </mat-form-field>
+              </td></tr>
+              <tr>
+                  <td> 
+               <mat-form-field> 
+                  <mat-label>Enter Adress</mat-label>
+                  <input matInput placeholder="Adress" required formControlName="adress">
+                  <mat-error *ngIf="adress.invalid">
+                      Adress is required
+                  </mat-error>
+                 </mat-form-field>
+                </td></tr>
+                <tr>
+                    <td> 
+                 <mat-form-field> 
+                    <mat-label>Subject </mat-label>
+                    <input matInput placeholder="Subject" required formControlName="subject">
+                    <mat-error *ngIf="subject.invalid">
+                        Subject is required
+                    </mat-error>
+                   </mat-form-field>
+                   
+                  </td></tr>
+                  <tr>
+                      <td> 
+                   <mat-form-field> 
+                      <mat-label>Mobile Number</mat-label>
+                      <input matInput placeholder="Mobile" required formControlName="mobile">
+                      <mat-error *ngIf="mobile.invalid">
+                          Subject is required
+                      </mat-error>
+                     </mat-form-field>
+                     
+                    </td></tr>
+                  <tr>
+                      <td> 
+                   <mat-form-field> 
+                      <mat-label>Enter EmailID</mat-label>
+                      <input matInput placeholder="EmailID" required formControlName="tEmailId">
+                      <mat-error *ngIf="tEmailId.invalid">
+                          EmailID is required
+                      </mat-error>
+                     </mat-form-field>
+                     
+                    </td></tr>
+                    <tr>
+                        <td> 
+                            <mat-form-field>
+                            <input matInput [matDatepicker]="picker"  [(ngModel)]="dob"  placeholder="Choose a date"  required formControlName="dob">
+                            <mat-error *ngIf="tEmailId.invalid">
+                                EmailID is required
+                            </mat-error>
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                          </mat-form-field>
+                        </td></tr>
+                        <tr>
+                            <td>
+            <button mat-raised-button
+            matTooltip="Info about the action"
+            type="submit" [disabled]=" fName.invalid ||lName.invalid || adress.invalid || subject.invalid||tEmailId.invalid ||mobile.invalid ||dob.invalid"
+            >Login</button>
+          </td></tr>
+        </table>
+          </form>
+  </div>
+  <div *ngIf="!addFlag && savedTeachers" class="login_div">
+      <H1 class="tiColor"> TEACHERS ADDED </H1>
+      <br>
+      <ul class="nav navbar-nav">
+        <li> <a [routerLink]="['/admin']">BACK TO HOME PAGE</a></li>
+        </ul>
+    </div>

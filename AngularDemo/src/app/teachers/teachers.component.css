@@ -1,0 +1,30 @@
+.tiColor {
+    color:#3f51b5
+   }
+   .login_div {
+    position: absolute;
+    /* Center form on page horizontally & vertically */
+    top: 40%;
+    left: 50%;
+    margin-top: -200px;
+    margin-left: -200px;
+}
+.techersButtons
+ {
+    position: absolute;
+    /* Center form on page horizontally & vertically */
+    top: 40%;
+    left: 20%;
+    margin-top: -200px;
+    margin-left: -200px;
+ }
+ table {
+    width: 100%;
+  }
+  
+  th.mat-sort-header-sorted {
+    color: black;
+  }
+  
+  
+  
